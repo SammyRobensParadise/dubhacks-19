@@ -43,7 +43,6 @@ export default function HomeScreen() {
             Change this text and your app will automatically reload.
           </Text>
         </View>
-
         <View style={styles.helpContainer}>
           <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
             <Text style={styles.helpLinkText}>
