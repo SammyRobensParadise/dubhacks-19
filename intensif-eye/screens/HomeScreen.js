@@ -10,13 +10,9 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View
 } from "react-native";
 import { Button } from "react-native-elements";
-
-import { MonoText } from "../components/StyledText";
-
 const CAMERA = "CAMERA";
 const GALLERY = "GALLERY";
 export default class HomeScreen extends Component {
