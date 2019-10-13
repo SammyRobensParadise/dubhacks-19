@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
-import { throwStatement } from "@babel/types";
 
 export default class DetailsScreen extends Component {
   constructor(props) {
@@ -11,9 +10,6 @@ export default class DetailsScreen extends Component {
         data: props.navigation.getParam("jsonData")
     }
   }
-  componentDidMount() {
-  }
-
   navigateToRawText = () => {
     console.log("Navigating.......")
     const { navigate, getParam } = this.props.navigation
@@ -22,21 +18,25 @@ export default class DetailsScreen extends Component {
       jsonData: data
     })
   }
-  render() {
-    return (
-        <View>
-      <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: this.props.navigation.getParam("image") }}
-          style={styles.image}
-        ></Image>
-      </View>
-      <View>
-          <Button title='Show Text' onPress={this.navigateToRawText}></Button>
-      </View>
-      </View>
-    );
-  }
+    goBack() {
+        console.log("Navigating.......")
+        const { navigate } = this.props.navigation
+        navigate('Main')
+    }
+    render() {
+        return (
+            <View style={styles.imageContainer}>
+                <Button
+                title="Back"
+                onPress={() => this.goBack()}>
+            </Button>
+                <Image 
+                source={{uri: this.props.navigation.getParam('image')}}
+                style={styles.image}></Image>
+                          <Button title='Show Text' onPress={this.navigateToRawText}></Button>
+            </View>
+        )
+    }
 }
 const styles = StyleSheet.create({
   imageContainer: {
