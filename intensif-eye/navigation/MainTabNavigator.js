@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import Details from '../screens/Details';
+import Text from '../screens/Text'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -37,7 +38,23 @@ DetailsStack.navigationOptions = {
 
 DetailsStack.path = '';
 
-
+const TextStack = createStackNavigator(
+  {Text: Text},
+  config
+)
+TextStack.navigationOptions = {
+  tabBarLabel: 'Text',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
+};
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
