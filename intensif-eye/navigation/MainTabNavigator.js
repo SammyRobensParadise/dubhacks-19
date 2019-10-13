@@ -7,6 +7,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import Details from '../screens/Details';
+import Text from '../screens/Text'
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -36,7 +37,6 @@ DetailsStack.navigationOptions = {
 };
 
 DetailsStack.path = '';
-
 
 const HomeStack = createStackNavigator(
   {
