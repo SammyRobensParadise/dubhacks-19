@@ -107,7 +107,7 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#000029"
   },
   developmentModeText: {
     marginBottom: 20,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
       }
     }),
     alignItems: "center",
-    backgroundColor: "#fbfbfb",
+    backgroundColor: "#000029",
     paddingVertical: 20
   },
   tabBarInfoText: {
