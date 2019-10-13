@@ -1,5 +1,5 @@
-import React, { Component,Fragment } from "react";
-import { Image, ScrollView, StyleSheet, Text, View, SafeAreaView } from "react-native";
+import React, { Component, Fragment } from "react";
+import { ScrollView, StyleSheet, Text, View, SafeAreaView } from "react-native";
 
 export default class TextScreen extends Component {
   constructor(props) {
@@ -8,30 +8,24 @@ export default class TextScreen extends Component {
       jsonResults: this.props.navigation.getParam("jsonData")
     };
   }
-  componentDidMount() {
-    console.log(
-      this.state.jsonResults.responses[0].textAnnotations[0].description
+  componentDidMount() {}
+  renderText = () => {
+    return (
+      <Text style={styles.text}>
+        {this.state.jsonResults.responses[0].textAnnotations[0].description}
+      </Text>
     );
-  }
-
+  };
   render() {
     return (
-        <Fragment>
+      <Fragment>
         <SafeAreaView style={styles.safeArea}></SafeAreaView>
-      <ScrollView>
-           
-        <View style={styles.container}>
-          <View style={styles.imageContainer}>
-            <Text style={styles.text}>
-              {
-                this.state.jsonResults.responses[0].textAnnotations[0]
-                  .description
-              }
-            </Text>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.container}>
+            <View>{this.renderText()}</View>
+            <View></View>
           </View>
-          <View></View>
-        </View>
-      </ScrollView>
+        </ScrollView>
       </Fragment>
     );
   }
@@ -40,7 +34,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     marginLeft: 20,
-    textAlign: 'left',
+    textAlign: "left",
     marginStart: 20
   },
   image: {
@@ -48,13 +42,18 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#000029"
+    backgroundColor: "#070F3B"
   },
   text: {
     color: "#fff",
-    fontSize: 48
+    fontSize: 48,
+    backgroundColor: "#070F3B"
   },
-  safeArea:  {
-      backgroundColor: "#000029"
+  safeArea: {
+    backgroundColor: "#070F3B",
+    flex: 0
+  },
+  scrollView: {
+      backgroundColor: "#070F3B"
   }
 });

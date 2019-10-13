@@ -152,7 +152,8 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   contentContainer: {
-    paddingTop: 30
+    paddingTop: 30,
+    marginLeft: 20
   },
   welcomeContainer: {
     alignItems: "center",
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
     height: 150,
     resizeMode: "contain",
     margin: 10,
-    marginLeft: 50
+    marginLeft: 10
   },
   buttonImageRight: {
     width: 150,

@@ -49,6 +49,7 @@ HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
+    style={{backgroundColor: '#070F3B'}}
       focused={focused}
       name={
         Platform.OS === 'ios'
@@ -95,8 +96,6 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
 });
 
 tabNavigator.path = '';
