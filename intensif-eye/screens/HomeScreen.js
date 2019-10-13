@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
+import {uploadImage} from '../utils/firebase'
 import {
   Image,
   Platform,
@@ -50,7 +51,7 @@ export default class HomeScreen extends Component {
       allowsEditing: true,
       aspect: [4, 3]
     });
-    
+    await uploadImage(result.uri)
   };
   _takePhoto = async () => {
     let result = await ImagePicker.launchCameraAsync({
@@ -58,6 +59,7 @@ export default class HomeScreen extends Component {
       allowsEditing: true,
       aspect: [4, 3]
     });
+    await uploadImage(result.uri)
   };
   render() {
     return (
