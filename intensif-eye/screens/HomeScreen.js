@@ -8,6 +8,7 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
+  TouchableOpacity,
   Text,
   View
 } from "react-native";
@@ -87,27 +88,48 @@ export default class HomeScreen extends Component {
           <View style={styles.welcomeContainer}>
             <Image
               source={
-                __DEV__
-                  ? require("../assets/images/robot-dev.png")
-                  : require("../assets/images/robot-prod.png")
+                require("../assets/images/small-eye.png")
               }
               style={styles.welcomeImage}
             />
-          </View >
+          </View>
+          <View style={styles.tabBarInfoContainer}>
+            <TouchableOpacity onPress = {() => this.initiatePhotoQuery(CAMERA)}>
+              <Image
+                  source={
+                    require("../assets/images/camera.png")
+                  }
+                  style={styles.buttonImageLeft}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress = {() => this.initiatePhotoQuery(GALLERY)}>
+            <Image
+                source={
+                  require("../assets/images/upload.png")
+                }
+                style={styles.buttonImageRight}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.tabBarInfoContainer}>
+            <TouchableOpacity onPress = {() => {/* todo */}}>
+              <Image
+                  source={
+                    require("../assets/images/saved.png")
+                  }
+                  style={styles.buttonImageLeft}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity onPress = {() => {/* todo */}}>
+            <Image
+                source={
+                  require("../assets/images/setup.png")
+                }
+                style={styles.buttonImageRight}
+              />
+            </TouchableOpacity>
+          </View>
         </ScrollView>
-        <View style={styles.welcomeContainer}>
-          {this.getLoadingText()}
-        </View>
-        <View style={styles.tabBarInfoContainer}>
-          <Button
-            title="Choose From Gallery"
-            onPress={() => this.initiatePhotoQuery(GALLERY)}
-          ></Button>
-          <Button
-            title="Take Photo"
-            onPress={() => this.initiatePhotoQuery(CAMERA)}
-          ></Button>
-        </View>
       </View>
     );
   }
@@ -120,7 +142,7 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000029"
+    backgroundColor: "#070F3B"
   },
   developmentModeText: {
     marginBottom: 20,
@@ -138,8 +160,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: 150,
     resizeMode: "contain",
     marginTop: 3,
     marginLeft: -10
@@ -166,24 +187,32 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   tabBarInfoContainer: {
-    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { width: 0, height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3
-      },
       android: {
         elevation: 20
       }
     }),
     alignItems: "center",
-    backgroundColor: "#000029",
-    paddingVertical: 20
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonImageLeft: {
+    width: 150,
+    height: 150,
+    resizeMode: "contain",
+    margin: 10,
+    marginLeft: 50
+  },
+  buttonImageRight: {
+    width: 150,
+    height: 150,
+    resizeMode: "contain",
+    margin: 10,
+    marginRight: 50
   },
   tabBarInfoText: {
     fontSize: 17,
@@ -204,8 +233,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#2e78b7"
   },
-  loadingText: {
-    color: '#fff',
-    fontSize: 20
-  }
 });
