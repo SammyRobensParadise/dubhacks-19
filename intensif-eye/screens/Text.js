@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#000029",
-    color: '#fff'
   },
   text: {
       color: '#fff',
-      fontSize: 20
+      fontSize: 48
   }
 });
