@@ -1,5 +1,12 @@
-import React, { Component,Fragment } from "react";
-import { Image, ScrollView, StyleSheet, Text, View, SafeAreaView } from "react-native";
+import React, { Component, Fragment } from "react";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView
+} from "react-native";
 
 export default class TextScreen extends Component {
   constructor(props) {
@@ -16,22 +23,21 @@ export default class TextScreen extends Component {
 
   render() {
     return (
-        <Fragment>
+      <Fragment>
         <SafeAreaView style={styles.safeArea}></SafeAreaView>
-      <ScrollView>
-           
-        <View style={styles.container}>
-          <View style={styles.imageContainer}>
-            <Text style={styles.text}>
-              {
-                this.state.jsonResults.responses[0].textAnnotations[0]
-                  .description
-              }
-            </Text>
+        <ScrollView>
+          <View style={styles.container}>
+            <View style={styles.imageContainer}>
+              <Text style={styles.text}>
+                {
+                  this.state.jsonResults.responses[0].textAnnotations[0]
+                    .description
+                }
+              </Text>
+            </View>
+            <View></View>
           </View>
-          <View></View>
-        </View>
-      </ScrollView>
+        </ScrollView>
       </Fragment>
     );
   }
@@ -40,7 +46,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     marginLeft: 20,
-    textAlign: 'left',
+    textAlign: "left",
     marginStart: 20
   },
   image: {
@@ -54,7 +60,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 48
   },
-  safeArea:  {
-      backgroundColor: "#000029"
+  safeArea: {
+    backgroundColor: "#000029",
+    flex: 0
   }
 });
