@@ -51,7 +51,7 @@ export default class HomeScreen extends Component {
     const { navigate } = this.props.navigation
     navigate('Details', {
       image: uri,
-      data: results
+      jsonData: results
     })
   }
   _pickImage = async () => {
