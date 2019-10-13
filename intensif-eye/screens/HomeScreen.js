@@ -1,4 +1,3 @@
-import * as WebBrowser from "expo-web-browser";
 import React, { Component } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
@@ -13,15 +12,18 @@ import {
   View
 } from "react-native";
 import { Button } from "react-native-elements";
+import { thisExpression } from "@babel/types";
 const CAMERA = "CAMERA";
 const GALLERY = "GALLERY";
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      didRender: false
+      didRender: false,
+      diduploadtofb: false,
     };
   }
+
   componentDidMount() {
     this.getPermissionAsync();
   }
@@ -42,6 +44,11 @@ export default class HomeScreen extends Component {
   };
   handleImageSendRecieve = async (uri) => {
     const url = await uploadImage(uri)
+    if(uri != (null|| undefined)){
+      this.setState({
+        diduploadtofb: true
+      })
+    }
     const results = await sendImagetoGoogleVision(url)
     console.log(results)
 
@@ -62,6 +69,11 @@ export default class HomeScreen extends Component {
     });
     await this.handleImageSendRecieve(result.uri)
   };
+  getLoadingText = () => {
+    if(this.state.diduploadtofb){
+      return <Text style={styles.loadingText}>Uploading...</Text>
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -78,9 +90,11 @@ export default class HomeScreen extends Component {
               }
               style={styles.welcomeImage}
             />
-          </View>
+          </View >
         </ScrollView>
-
+        <View style={styles.welcomeContainer}>
+          {this.getLoadingText()}
+        </View>
         <View style={styles.tabBarInfoContainer}>
           <Button
             title="Choose From Gallery"
@@ -187,11 +201,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#2e78b7"
   },
-  cameraButton: {
-    fontSize: 14,
-    color: "#f5793a",
-    textAlign: "center",
-    marginTop: 20,
-    width: 50
+  loadingText: {
+    color: '#fff',
+    fontSize: 20
   }
 });
