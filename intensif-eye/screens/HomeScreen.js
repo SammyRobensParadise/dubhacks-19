@@ -202,15 +202,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   buttonImageLeft: {
-    width: 150,
-    height: 150,
+    width: 120,
+    height: 120,
     resizeMode: "contain",
     margin: 10,
-    marginLeft: 10
+    marginLeft: 10,
   },
   buttonImageRight: {
-    width: 150,
-    height: 150,
+    width: 120,
+    height: 120,
     resizeMode: "contain",
     margin: 10,
     marginRight: 50

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { ScrollView, StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { Button } from "react-native-elements";
 
 export default class TextScreen extends Component {
   constructor(props) {
@@ -16,6 +17,11 @@ export default class TextScreen extends Component {
       </Text>
     );
   };
+  goBack(){
+    console.log("Navigating.......");
+    const { navigate } = this.props.navigation;
+    navigate("Main");
+  }
   render() {
     return (
       <Fragment>
@@ -23,9 +29,12 @@ export default class TextScreen extends Component {
         <ScrollView style={styles.scrollView}>
           <View style={styles.container}>
             <View>{this.renderText()}</View>
-            <View></View>
+            <View>
+                
+            </View>
           </View>
         </ScrollView>
+        <Button title="Back to home" onPress={() => this.goBack()}></Button>
       </Fragment>
     );
   }
