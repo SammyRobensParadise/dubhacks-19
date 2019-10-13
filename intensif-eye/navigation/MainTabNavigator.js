@@ -38,23 +38,6 @@ DetailsStack.navigationOptions = {
 
 DetailsStack.path = '';
 
-const TextStack = createStackNavigator(
-  {Text: Text},
-  config
-)
-TextStack.navigationOptions = {
-  tabBarLabel: 'Text',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
