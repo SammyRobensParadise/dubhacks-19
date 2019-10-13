@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Image, View, Alert } from "react-native";
 import { Button } from "react-native-elements";
+import newLinking from "expo/build/Linking/Linking";
 
 export default class DetailsScreen extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ export default class DetailsScreen extends Component {
     console.log("Navigating.......");
     const { navigate, getParam } = this.props.navigation;
     const data = getParam("jsonData");
-    if (data.responses[0]){
+    console.log(data.responses[0])
+    if (!data.responses[0].textAnnotations){
       Alert.alert(
         'No text was found!',
         'Please try another image',
