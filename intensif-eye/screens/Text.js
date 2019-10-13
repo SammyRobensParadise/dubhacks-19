@@ -17,23 +17,21 @@ export default class TextScreen extends Component {
   }
   componentDidMount() {
     console.log(
-      this.state.jsonResults.responses[0].textAnnotations[0].description
+    //  this.state.jsonResults.responses[0].textAnnotations[0].description
     );
   }
-
+  renderText = () => {
+      return <Text style={styles.text}>{this.state.jsonResults.responses[0].textAnnotations[0].description}</Text>
+  }
   render() {
     return (
       <Fragment>
         <SafeAreaView style={styles.safeArea}></SafeAreaView>
         <ScrollView>
           <View style={styles.container}>
-            <View style={styles.imageContainer}>
-              <Text style={styles.text}>
-                {
-                  this.state.jsonResults.responses[0].textAnnotations[0]
-                    .description
-                }
-              </Text>
+            <View>
+
+            {this.renderText()}
             </View>
             <View></View>
           </View>
