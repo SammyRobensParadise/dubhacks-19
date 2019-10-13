@@ -6,6 +6,7 @@ import {
     Text,
     View
   } from "react-native";
+import { Button } from "react-native-elements";
 
 export default class DetailsScreen extends Component {
     constructor(props) {
@@ -18,9 +19,18 @@ export default class DetailsScreen extends Component {
         console.log(this.props.image)
         console.log(this.props.jsonData)
     }
+    goBack() {
+        console.log("Navigating.......")
+        const { navigate } = this.props.navigation
+        navigate('Main')
+    }
     render() {
         return (
             <View style={styles.imageContainer}>
+                <Button
+                title="Back"
+                onPress={() => this.goBack()}>
+            </Button>
                 <Image 
                 source={{uri: this.props.navigation.getParam('image')}}
                 style={styles.image}></Image>
