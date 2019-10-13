@@ -1,31 +1,29 @@
-import * as WebBrowser from "expo-web-browser";
 import React, { Component } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import {uploadImage} from '../utils/firebase'
+import {uploadImage,sendImagetoGoogleVision} from '../utils/firebase'
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View
 } from "react-native";
 import { Button } from "react-native-elements";
-
-import { MonoText } from "../components/StyledText";
-
+import { thisExpression } from "@babel/types";
 const CAMERA = "CAMERA";
 const GALLERY = "GALLERY";
 export default class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      didRender: false
+      didRender: false,
+      diduploadtofb: false,
     };
   }
+
   componentDidMount() {
     this.getPermissionAsync();
   }
@@ -35,23 +33,36 @@ export default class HomeScreen extends Component {
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      const { statCam } = await Permissions.askAsync(Permissions.CAMERA);
       if (status !== "granted") {
         alert("Sorry, we need camera roll permissions to make this work!");
       }
+      const { statCam } = await Permissions.askAsync(Permissions.CAMERA);
       if (statCam !== "granted") {
-        alert("Sorry, we need camera roll permissions to make this work!");
       }
     }
   };
-
+  handleImageSendRecieve = async (uri) => {
+    const url = await uploadImage(uri)
+    if(uri != (null|| undefined)){
+      this.setState({
+        diduploadtofb: true
+      })
+    }
+    const results = await sendImagetoGoogleVision(url)
+    console.log("Navigating.......")
+    const { navigate } = this.props.navigation
+    navigate('Details', {
+      image: uri,
+      jsonData: results
+    })
+  }
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3]
     });
-    await uploadImage(result.uri)
+    await this.handleImageSendRecieve(result.uri)
   };
   _takePhoto = async () => {
     let result = await ImagePicker.launchCameraAsync({
@@ -59,8 +70,13 @@ export default class HomeScreen extends Component {
       allowsEditing: true,
       aspect: [4, 3]
     });
-    await uploadImage(result.uri)
+    await this.handleImageSendRecieve(result.uri)
   };
+  getLoadingText = () => {
+    if(this.state.diduploadtofb){
+      return <Text style={styles.loadingText}>Uploading...</Text>
+    }
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -113,8 +129,6 @@ export default class HomeScreen extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-
-        
       </View>
     );
   }
@@ -123,41 +137,6 @@ export default class HomeScreen extends Component {
 HomeScreen.navigationOptions = {
   header: null
 };
-
-function DevelopmentModeNotice() {
-  if (__DEV__) {
-    const learnMoreButton = (
-      <Text onPress={handleLearnMorePress} style={styles.helpLinkText}>
-        Learn more
-      </Text>
-    );
-
-    return (
-      <Text style={styles.developmentModeText}>
-        Development mode is enabled: your app will be slower but you can use
-        useful development tools. {learnMoreButton}
-      </Text>
-    );
-  } else {
-    return (
-      <Text style={styles.developmentModeText}>
-        You are not in development mode: your app will run at full speed.
-      </Text>
-    );
-  }
-}
-
-function handleLearnMorePress() {
-  WebBrowser.openBrowserAsync(
-    "https://docs.expo.io/versions/latest/workflow/development-mode/"
-  );
-}
-
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    "https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes"
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -253,5 +232,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#2e78b7"
   },
-
 });
