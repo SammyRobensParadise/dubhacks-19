@@ -50,8 +50,12 @@ export default class HomeScreen extends Component {
       })
     }
     const results = await sendImagetoGoogleVision(url)
-    console.log(results)
-
+    console.log("Navigating.......")
+    const { navigate } = this.props.navigation
+    navigate('Details', {
+      image: uri,
+      jsonData: results
+    })
   }
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
