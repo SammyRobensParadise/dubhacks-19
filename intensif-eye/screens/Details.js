@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, Image, View, Alert } from "react-native";
 import { Button } from "react-native-elements";
 
 export default class DetailsScreen extends Component {
@@ -14,6 +14,17 @@ export default class DetailsScreen extends Component {
     console.log("Navigating.......");
     const { navigate, getParam } = this.props.navigation;
     const data = getParam("jsonData");
+    if (data.responses[0]){
+      Alert.alert(
+        'No text was found!',
+        'Please try another image',
+        [
+          {text: 'Okay', onPress: () => {}}
+        ],
+        {cancelable: true},
+      );
+      return
+    }
     navigate("Text", {
       jsonData: data
     });
