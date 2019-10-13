@@ -38,7 +38,6 @@ export default class HomeScreen extends Component {
       }
       const { statCam } = await Permissions.askAsync(Permissions.CAMERA);
       if (statCam !== "granted") {
-        alert("Sorry, we need camera permissions to make this work!");
       }
     }
   };

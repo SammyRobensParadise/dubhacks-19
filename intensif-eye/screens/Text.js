@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Button } from "react-native-elements";
+
 
 export default class TextScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        jsonResults: props.navigation.getParam('jsonDate')
+        jsonResults: this.props.navigation.getParam('jsonData')
     }
   }
   componentDidMount() {
