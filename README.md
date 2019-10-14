@@ -23,10 +23,10 @@ https://docs.google.com/presentation/d/194kRmFEYCNUtARd8mHtiqWjbNuEB_oaMDYlANlOI
 
 # The (cool) people behind this project:
 
-<b>Kira Wadden</b>, UWaterloo Engineering: https://github.com/kirawadden
-<b>Allison Chiang</b>, UBC Computer Science: https://github.com/acchiang
-<b>Giulio Rossi</b>, UBC Computer Science: https://github.com/Ciuffi
-<b>Sammy Robens-Paradise</b>, UWaterloo Engineering: https://github.com/sammyrobensparadise
+<b>Kira Wadden</b>, UWaterloo Engineering: https://github.com/kirawadden \
+<b>Allison Chiang</b>, UBC Computer Science: https://github.com/acchiang \
+<b>Giulio Rossi</b>, UBC Computer Science: https://github.com/Ciuffi \
+<b>Sammy Robens-Paradise</b>, UWaterloo Engineering: https://github.com/sammyrobensparadise \
 
 
 
